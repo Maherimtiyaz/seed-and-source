@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Seed &amp; Source</title>
+<meta name="description" content="A free weekly newsletter about how startups are built: the story, the business side, the code, and the tools behind them.">
+<meta property="og:title" content="Seed &amp; Source">
+<meta property="og:description" content="How startups are planted, and what they're built from. One company, every Tuesday.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+.hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.bar nav a { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+/* Layout: a field cut in half by a soil line. Above ground, the story (headline, prose).
+   Below ground, the source (mono "roots": code, numbers, tools). */
+:root {
+  --paper: #e9ece2;      /* pale field green, the "above ground" */
+  --sheet: #f6f7f1;      /* cards and the seed packet */
+  --ink: #18221b;        /* deep moss text */
+  --muted: #56625a;
+  --soil: #2b2620;       /* below-ground band */
+  --soil-ink: #e6dccb;
+  --root: #a89a82;       /* mono roots on soil */
+  --bloom: #e2a52b;      /* sunflower accent: shapes and fills */
+  --bloom-ink: #8a5a00;  /* accent for text on light ground */
+  --line: #cfd4c6;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121611; --sheet: #1a201a; --ink: #e7ece3; --muted: #9aa597;
+    --soil: #0b0a08; --soil-ink: #e6dccb; --root: #8d806b;
+    --bloom: #f0b43a; --bloom-ink: #f0b43a; --line: #2a3229; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121611; --sheet: #1a201a; --ink: #e7ece3; --muted: #9aa597;
+  --soil: #0b0a08; --soil-ink: #e6dccb; --root: #8d806b;
+  --bloom: #f0b43a; --bloom-ink: #f0b43a; --line: #2a3229; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.05; margin: 0; }
+p { margin: 0; }
+a { color: var(--bloom-ink); }
+:focus-visible { outline: 3px solid var(--bloom); outline-offset: 3px; }
+.mono { font-family: var(--font-mono); }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- above ground ---------- */
+.top { padding-block: 28px 56px; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.mark { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 20px; }
+.mark svg { width: 28px; height: 28px; }
+.bar .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+
+.hero { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: end; margin-top: 56px; }
+.hero > * { min-width: 0; }
+.hero h1 { font-size: clamp(52px, 10vw, 112px); font-weight: 800; letter-spacing: -0.035em; }
+.hero h1 .amp { font-family: var(--font-mono); font-weight: 400; color: var(--bloom-ink); font-size: .62em; vertical-align: .18em; padding-inline: .06em; }
+.hero .lede { font-size: clamp(19px, 2.2vw, 23px); margin-top: 22px; max-width: 34ch; }
+.form { margin-top: 28px; display: flex; gap: 10px; flex-wrap: wrap; max-width: 470px; }
+.form input { flex: 1 1 220px; min-width: 0; font: inherit; padding: 14px 16px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--sheet); color: var(--ink); }
+.form button { font: 600 16px var(--font-body); padding: 14px 20px; border-radius: 10px; border: 0; background: var(--ink); color: var(--paper); cursor: pointer; }
+.form button:hover { background: var(--bloom); color: #1a1405; }
+.note { margin-top: 10px; font-size: 13px; color: var(--muted); max-width: 470px; }
+.note[data-state="sent"] { color: var(--bloom-ink); }
+
+/* the seed packet: issue #1 preview */
+.packet { background: var(--sheet); border: 1.5px solid var(--ink); border-radius: 4px; padding: 22px 22px 18px; position: relative; transform: rotate(1.4deg); box-shadow: 6px 6px 0 var(--bloom); }
+.packet::before { content: ""; position: absolute; top: -1.5px; left: 18px; right: 18px; height: 10px; border-bottom: 1.5px dashed var(--ink); }
+.packet .eyebrow { margin-top: 10px; }
+.packet h3 { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; margin-top: 6px; }
+.packet .sub { color: var(--muted); font-size: 15px; margin-top: 4px; }
+.facts { margin: 16px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 14px; }
+.facts dt { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding-top: 2px; }
+.facts dd { margin: 0; }
+.packet .stamp { margin-top: 14px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); border-top: 1.5px solid var(--line); padding-top: 10px; }
+
+/* ---------- the soil line ---------- */
+.soil { background: var(--soil); color: var(--soil-ink); position: relative; }
+.soil::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 14px; background:
+  radial-gradient(circle at 10px 14px, var(--soil) 9px, transparent 10px) 0 0 / 22px 14px repeat-x; }
+.soil .wrap { padding-block: 56px 64px; }
+.roots { font-family: var(--font-mono); font-size: 13px; color: var(--root); line-height: 1.9; overflow-x: auto; white-space: pre; }
+.roots b { color: var(--bloom); font-weight: 500; }
+.soil h2 { font-size: clamp(32px, 5vw, 52px); font-weight: 600; letter-spacing: -0.02em; margin-top: 36px; color: var(--soil-ink); }
+.story { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 48px; margin-top: 22px; }
+.story > p { min-width: 0; max-width: 60ch; color: var(--soil-ink); opacity: .92; }
+.story strong { color: var(--bloom); font-weight: 600; }
+
+/* ---------- back above ground ---------- */
+.section { padding-block: 72px 0; }
+.section h2 { font-size: clamp(30px, 4.4vw, 46px); font-weight: 600; letter-spacing: -0.02em; }
+.section .intro { color: var(--muted); margin-top: 10px; max-width: 58ch; }
+.rows { margin-top: 28px; border-top: 1.5px solid var(--ink); }
+.row { display: grid; grid-template-columns: 210px 1fr; gap: 8px 32px; padding-block: 18px; border-bottom: 1.5px solid var(--line); }
+.row > * { min-width: 0; }
+.row .tag { font-family: var(--font-mono); font-size: 14px; color: var(--bloom-ink); padding-top: 3px; }
+.row h3 { font-size: 22px; font-weight: 600; }
+.row p { color: var(--muted); margin-top: 4px; max-width: 62ch; }
+
+.who { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+.who > div { background: var(--sheet); border-radius: 12px; padding: 20px; min-width: 0; }
+.who h3 { font-size: 19px; font-weight: 600; }
+.who p { color: var(--muted); font-size: 15px; margin-top: 6px; }
+
+.promise { margin-top: 72px; padding-block: 40px; border-top: 1.5px solid var(--ink); display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
+.promise > * { min-width: 0; }
+.promise h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 600; }
+.promise p { color: var(--muted); margin-top: 8px; max-width: 55ch; }
+.promise a.cta { font: 600 16px var(--font-body); padding: 14px 22px; border-radius: 10px; background: var(--bloom); color: #1a1405; text-decoration: none; white-space: nowrap; }
+footer { padding-block: 24px 48px; font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; margin-top: 36px; }
+  .packet { transform: rotate(0.8deg); max-width: 460px; }
+  .story { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 1fr; }
+  .who { grid-template-columns: 1fr; }
+  .promise { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .packet { transition: transform .4s ease; }
+  .packet:hover { transform: rotate(0deg) translateY(-4px); }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="bar">
+      <div class="mark">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 30V15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+          <path d="M16 17c0-6 4-9 10-9 0 6-4 9-10 9Z" fill="var(--bloom)" stroke="currentColor" stroke-width="2"/>
+          <path d="M16 20c0-5-3.5-8-9-8 0 5 3.5 8 9 8Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        Seed &amp; Source
+      </div>
+      <nav><a href="/issues/">Past issues</a></nav>
+    </div>
+
+    <div class="hero">
+      <div>
+        <p class="eyebrow">A newsletter about how startups are built</p>
+        <h1>Seed <span class="amp">&amp;</span> Source</h1>
+        <p class="lede">The story behind a startup, the business that pays for it, and the code it runs on. One company dug up every week.</p>
+        <form class="form" id="signup" novalidate>
+          <label for="email" class="eyebrow" style="position:absolute;left:-9999px">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+          <input class="hp" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit">Plant me in</button>
+        </form>
+        <p class="note" id="signup-note" aria-live="polite">Free, every Tuesday. We'll email you a link to confirm.</p>
+      </div>
+
+      <aside class="packet" aria-label="What the newsletter is">
+        <p class="eyebrow">Seed packet · one per week</p>
+        <h3>Seed &amp; Source</h3>
+        <p class="sub">A weekly newsletter about how startups are built</p>
+        <dl class="facts">
+          <dt>Planted</dt><dd>Every Tuesday, in your inbox</dd>
+          <dt>Contents</dt><dd>One startup, from the first idea down to the stack</dd>
+          <dt>Varieties</dt><dd>YC companies, AI startups, open-source projects, bootstrapped businesses</dd>
+          <dt>Yield</dt><dd>A seven-minute read with every claim linked to its source</dd>
+        </dl>
+        <p class="stamp">Free · unsubscribe in one click</p>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<section class="soil" aria-labelledby="story-title">
+  <div class="wrap">
+<pre class="roots" aria-hidden="true">  ├── <b>the seed</b>    idea · founder · first check · first customer
+  │     └── one tagline that finally clicked
+  └── <b>the source</b>  code · stack · pricing · the tools behind it
+        ├── git log --reverse | head -1
+        └── what it costs, what it earns, what broke</pre>
+    <h2 id="story-title">Every company you admire started as two things.</h2>
+    <div class="story">
+      <p>A <strong>seed</strong>: an idea someone couldn't stop thinking about, a founder willing to look foolish, a first check, a first customer. Small, buried and easy to miss. By the time a startup is in the headlines, the seed is long out of sight.</p>
+      <p>And <strong>source</strong>: the code, the tools and the decisions it grows from. More of it is public than ever, in open repos, changelogs and pricing pages that anyone can read if they know where to dig.</p>
+      <p>Most startup writing covers one half. Funding news without the code. Engineering posts without the business. Founder myths without the numbers.</p>
+      <p>Seed &amp; Source digs up both. Each week we take one company, from YC launches to AI startups to the open-source projects quietly becoming businesses, and trace it from the first idea down to the stack. Everything we claim links to where we found it.</p>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <section class="section" aria-labelledby="inside-title">
+    <p class="eyebrow">What's in every issue</p>
+    <h2 id="inside-title">One company, from the story down to the stack</h2>
+    <p class="intro">Same sections every week, so you always know where to look. The main story rotates between YC companies, AI startups and bootstrapped businesses.</p>
+    <div class="rows">
+      <div class="row"><span class="tag">story/</span><div><h3>The Story</h3><p>How it started, the first customers, what nearly killed it, and what is working now.</p></div></div>
+      <div class="row"><span class="tag">business/</span><div><h3>The Business Side</h3><p>Pricing, growth, funding and the decisions behind the numbers.</p></div></div>
+      <div class="row"><span class="tag">source/</span><div><h3>Under the Hood</h3><p>The stack and one engineering decision, explained so a non-engineer can follow it.</p></div></div>
+      <div class="row"><span class="tag">ai-radar/</span><div><h3>AI Radar</h3><p>Two or three AI startups doing well this week, and why.</p></div></div>
+      <div class="row"><span class="tag">tools/</span><div><h3>Tools</h3><p>One open-source pick and one paid pick, both actually tried before they get written up.</p></div></div>
+      <div class="row"><span class="tag">quick-hits/</span><div><h3>Quick Hits</h3><p>Launches, funding rounds and repos worth a look, one line each.</p></div></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="who-title">
+    <p class="eyebrow">Who it's for</p>
+    <h2 id="who-title">For people who build, or want to</h2>
+    <div class="who">
+      <div><h3>Founders</h3><p>How companies like yours found their first customers and their pricing.</p></div>
+      <div><h3>Engineers</h3><p>The stack behind the story, and the open-source tools worth stealing.</p></div>
+      <div><h3>The curious</h3><p>Startups explained properly, without the hype or the jargon.</p></div>
+    </div>
+  </section>
+
+  <section class="promise" aria-labelledby="promise-title">
+    <div>
+      <h2 id="promise-title">A seven-minute read, every Tuesday.</h2>
+      <p>Free. Every claim linked to its source. No sponsored stories dressed up as research. Unsubscribe in one click.</p>
+    </div>
+    <a class="cta" href="#signup">Subscribe free</a>
+  </section>
+
+  <footer>
+    <span>Seed &amp; Source</span>
+    <span>How startups are planted, and what they're built from.</span>
+  </footer>
+</main>
+
+<script>
+  const form = document.getElementById("signup");
+  const note = document.getElementById("signup-note");
+  const button = form.querySelector("button");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const email = form.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      note.textContent = "Enter a full email address, like you@company.com.";
+      note.dataset.state = "";
+      form.email.focus();
+      return;
+    }
+    button.disabled = true;
+    note.textContent = "Sending…";
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, company_website: form.company_website.value }),
+      });
+      if (!response.ok) throw new Error(String(response.status));
+      note.textContent = "Almost done: check your inbox and click the link to confirm.";
+      note.dataset.state = "sent";
+      form.reset();
+    } catch {
+      note.textContent = "That didn't go through. Please try again in a minute.";
+      note.dataset.state = "";
+    } finally {
+      button.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>

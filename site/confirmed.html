@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subscription confirmed · Seed &amp; Source</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/assets/archive.css">
+</head>
+<body>
+<main class="page">
+  <a class="mark" href="/">Seed &amp; Source</a>
+  <h1 id="title">You're in.</h1>
+  <p id="message">The next issue lands on Tuesday. Add the sender to your contacts so it doesn't end up in spam.</p>
+  <p><a href="/issues/">Read past issues</a></p>
+</main>
+<script>
+  const status = new URLSearchParams(location.search).get("status");
+  if (status === "expired") {
+    document.getElementById("title").textContent = "That link has expired.";
+    document.getElementById("message").textContent = "Confirmation links work for 48 hours. Sign up again on the home page and we'll send a fresh one.";
+  } else if (status === "error") {
+    document.getElementById("title").textContent = "Something went wrong on our side.";
+    document.getElementById("message").textContent = "Your link was fine, but we couldn't add you just now. Please try the link again in a few minutes.";
+  }
+</script>
+</body>
+</html>
