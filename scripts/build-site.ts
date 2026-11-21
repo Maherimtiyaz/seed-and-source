@@ -21,11 +21,13 @@ function page(title: string, description: string, content: string): string {
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:wght@900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="/assets/archive.css"></head>
 <body><main class="page">
 <a class="mark" href="/">Seed &amp; Source</a>
 ${content}
-<div class="subscribe"><strong>Get the next issue.</strong> One startup, from the first idea down to the stack, every Tuesday. <a href="/#signup">Subscribe free</a></div>
+<div class="subscribe"><strong>Get the next edition.</strong> One startup, from seed to bloom, every Tuesday. <a href="/#email-top">Subscribe free</a></div>
 </main></body></html>
 `;
 }
@@ -47,7 +49,7 @@ export function indexPage(issues: Issue[]): string {
         .map((issue) => `<li><a href="/issues/${issue.slug}.html">${escapeHtml(issue.meta.title)}</a><div class="meta">${escapeHtml(issue.meta.date)} · ${escapeHtml(issue.meta.company)}</div></li>`)
         .join("\n")
     : `<li>The first issue is on its way.</li>`;
-  return page("Past issues · Seed & Source", "Every past issue of Seed & Source.", `<h1>Past issues</h1>\n<ul class="list">\n${items}\n</ul>`);
+  return page("Past editions · Seed & Source", "Every past edition of Seed & Source.", `<h1>Past editions</h1>\n<ul class="list">\n${items}\n</ul>`);
 }
 
 function main() {
