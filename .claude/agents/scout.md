@@ -11,6 +11,8 @@ Your job: choose ONE company for this week's main story, plus two backups.
 1. Read CLAUDE.md ("Rotation") and list issues/ to see which companies and types were covered recently. Read ideas.md for the backlog (reader and editor suggestions come first).
 2. Find candidates with real, public, citable material: founder interviews, the company's own blog/changelog, YC company pages, reputable press, a public GitHub repo. A great pick has a turning point (a pivot, a launch, a near-death moment) and a visible business model or stack.
 3. Respect the rotation and the 6-month no-repeat rule.
+4. Check the pick serves the readers listed in CLAUDE.md ("Who reads it"): there should be something for an
+   indie hacker (business), an engineer (stack) and an AI engineer (AI angle, if any). Say which in pick.md.
 
 Write research/<slug>/pick.md:
 - **Pick:** company, type (YC / AI / open source / bootstrapped), one sentence on why now.

@@ -101,11 +101,27 @@ Every `git push` redeploys the site.
 6. `npm run build`, then commit and push (publishes the archive).
 7. Post the X thread and LinkedIn post from `research/<slug>/social.md`.
 
-## Issue 01 is waiting for you
+## Subscribers: where they live and what happens automatically
 
-`issues/2026-11-24-supabase.md` has The Story, The Business Side, Under the Hood and the
-lessons written and sourced. Fill in **AI Radar**, **Tools** (only tools you tried) and
-**Quick Hits**, or delete those headings. `npm run send` refuses until it's finished and approved.
+- **Signing up:** someone clicks your invite → lands on the site → types their email → gets a confirmation
+  email → clicks it → is added to the `Subscribers` segment in Resend. Nobody is added without that click.
+- **Where to see them:** Resend → Audience → Contacts (filter by the `Subscribers` segment). You can export a
+  CSV there. Keep that file private; never commit it.
+- **Unsubscribing:** every issue has an unsubscribe link (added by the template). One click marks the contact
+  "unsubscribed" in Resend, and future broadcasts skip them automatically. Nothing for you to do.
+- **Bounces and spam complaints:** Resend suppresses those addresses automatically.
+- **Who's reading:** each broadcast in Resend shows opens and clicks. Opens are approximate (Apple Mail
+  pre-loads emails), so clicks are the more honest signal.
+- **People who stopped reading:** not automated yet. Once you have a few months of issues, do a quarterly
+  clean-up: send non-readers one "Still want this?" email, then unsubscribe anyone who doesn't click.
+  Resend's API can list who opened or clicked each broadcast, so this can become an editor-only command later.
+
+## Brand and invitations
+
+- `brand/`: logo avatars (`avatar-ink.png` for Gmail and social profiles), `monogram.png`, `wordmark.png`,
+  `og.png` (link preview) and `invite.png`. Sources in `brand/src/`.
+- `invites/`: how to invite people, ready-to-paste messages per audience, a branded invitation email and
+  the invitation card.
 
 ## Commands
 
@@ -130,5 +146,7 @@ lessons written and sourced. Fill in **AI Radar**, **Tools** (only tools you tri
 | `tools-tried.md` | Tools you actually used (the only ones the writer may feature) |
 | `sent.json` | Issues already sent; prevents double sends |
 | `site/` | Landing page, confirmation page, archive styles |
+| `brand/` | Logo, avatars, link-preview image, invitation card (+ HTML sources) |
+| `invites/` | Invitation guide, messages per audience, branded invite email |
 | `functions/api/` | Signup and confirmation endpoints (Cloudflare Pages Functions) |
 | `scripts/` | The commands above |

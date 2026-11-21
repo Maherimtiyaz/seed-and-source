@@ -6,8 +6,26 @@ Every agent working in this repo reads this first.
 
 A free weekly newsletter: **"How startups are planted, and what they're built from."**
 Each issue takes ONE company and traces it from the first idea (the seed) down to its
-code, tools and business model (the source). Readers: founders, engineers and curious
-builders. Promise: a seven-minute read where every claim links to its source.
+code, tools and business model (the source). Promise: a seven-minute read where every
+claim links to its source.
+
+**Who reads it** (write for all of them at once):
+- Indie hackers and bootstrappers: pricing, first customers, distribution, what one person can copy.
+- Software engineers: the stack and the one engineering decision, explained without dumbing down.
+- AI engineers: models, infra and costs behind AI products; what is real versus marketing.
+- Tech, startup and business readers: the story and the business, with no jargon left unexplained.
+
+## How agents work (adapted from the "Karpathy-inspired" CLAUDE.md guidelines)
+
+1. **Think before writing.** State your assumptions in your file (e.g. "assuming the Series B date is the
+   announcement date"). If two readings of a fact exist, write both down instead of picking one silently.
+2. **Simplest thing that works.** Write what the step needs and nothing more: no extra sections, no
+   speculative "future" claims, no filler.
+3. **Surgical edits.** When fixing someone else's file (e.g. the fact-checker fixing the issue), change only
+   the lines that are wrong. Don't rewrite style you merely dislike.
+4. **Goal-driven, with a check.** Every step has a test it must pass before handing off: the researcher has
+   15+ facts each with an opened URL; the writer hits 1,200–1,800 words and every section in order; the
+   fact-checker has opened every link. If the check fails, fix it or say so; never hand off silently.
 
 ## Voice
 
