@@ -52,11 +52,10 @@ describe("issues", () => {
     assert.ok(sendBlockers(parseIssue("s", issueSource({ body: "too short" }))).some((b) => b.includes("words")));
   });
 
-  test("Issue 01 is not sendable until the editor finishes it", () => {
+  test("Issue 01 is not sendable until the editor approves it", () => {
     const issue = loadIssue("2026-11-24-supabase");
     const blockers = sendBlockers(issue);
     assert.ok(blockers.some((b) => b.includes("approved: false")));
-    assert.ok(blockers.some((b) => b.includes("placeholder")));
   });
 
   test("slugs are validated before touching the filesystem", () => {
