@@ -4,267 +4,404 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Seed &amp; Source</title>
-<meta name="description" content="A free weekly newsletter about how startups are built: the story, the business side, the code, and the tools behind them.">
+<meta name="description" content="A free weekly newsletter about how startups are built: the idea, the business, the code and the tools behind them. One company, every Tuesday.">
 <meta property="og:title" content="Seed &amp; Source">
-<meta property="og:description" content="How startups are planted, and what they're built from. One company, every Tuesday.">
+<meta property="og:description" content="Every company you admire was once a seed in the dark. One startup a week, from the first idea down to the stack.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-.hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-.bar nav a { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
-/* Layout: a field cut in half by a soil line. Above ground, the story (headline, prose).
-   Below ground, the source (mono "roots": code, numbers, tools). */
+/* Layout: one plant's life, read top to bottom. The surface (hero), then down into the
+   soil (seed, roots), back up through the soil line (sprout), into the light (stem, bloom),
+   and the harvest (signup). A growth log down the left edge marks time, not depth. */
 :root {
-  --paper: #e9ece2;      /* pale field green, the "above ground" */
-  --sheet: #f6f7f1;      /* cards and the seed packet */
-  --ink: #18221b;        /* deep moss text */
+  --paper: #e9ece2;      /* above ground */
+  --sheet: #f6f7f1;
+  --ink: #18221b;
   --muted: #56625a;
-  --soil: #2b2620;       /* below-ground band */
-  --soil-ink: #e6dccb;
-  --root: #a89a82;       /* mono roots on soil */
-  --bloom: #e2a52b;      /* sunflower accent: shapes and fills */
-  --bloom-ink: #8a5a00;  /* accent for text on light ground */
   --line: #cfd4c6;
+  --soil: #2b2620;       /* underground */
+  --soil-deep: #1f1b16;
+  --soil-ink: #ece3d3;
+  --soil-muted: #b3a690;
+  --root: #a89a82;
+  --leaf: #3f6b4a;       /* green growth */
+  --bloom: #e2a52b;      /* sunflower accent */
+  --bloom-ink: #8a5a00;
   --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --font-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #121611; --sheet: #1a201a; --ink: #e7ece3; --muted: #9aa597;
-    --soil: #0b0a08; --soil-ink: #e6dccb; --root: #8d806b;
-    --bloom: #f0b43a; --bloom-ink: #f0b43a; --line: #2a3229; color-scheme: dark;
+    --paper: #121611; --sheet: #1a201a; --ink: #e7ece3; --muted: #9aa597; --line: #2a3229;
+    --soil: #0d0b09; --soil-deep: #080706; --soil-ink: #ece3d3; --soil-muted: #a89a84; --root: #8d806b;
+    --leaf: #7fb08a; --bloom: #f0b43a; --bloom-ink: #f0b43a; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #121611; --sheet: #1a201a; --ink: #e7ece3; --muted: #9aa597;
-  --soil: #0b0a08; --soil-ink: #e6dccb; --root: #8d806b;
-  --bloom: #f0b43a; --bloom-ink: #f0b43a; --line: #2a3229; color-scheme: dark;
+  --paper: #121611; --sheet: #1a201a; --ink: #e7ece3; --muted: #9aa597; --line: #2a3229;
+  --soil: #0d0b09; --soil-deep: #080706; --soil-ink: #ece3d3; --soil-muted: #a89a84; --root: #8d806b;
+  --leaf: #7fb08a; --bloom: #f0b43a; --bloom-ink: #f0b43a; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 18px/1.65 var(--font-body); }
 .wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.05; margin: 0; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.04; }
 p { margin: 0; }
 a { color: var(--bloom-ink); }
 :focus-visible { outline: 3px solid var(--bloom); outline-offset: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .mono { font-family: var(--font-mono); }
-.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 
-/* ---------- above ground ---------- */
-.top { padding-block: 28px 56px; }
-.bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.mark { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 20px; }
+/* ---------- surface ---------- */
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 24px; flex-wrap: wrap; }
+.mark { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 20px; color: var(--ink); text-decoration: none; }
 .mark svg { width: 28px; height: 28px; }
-.bar .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.bar nav { display: flex; gap: 20px; font-family: var(--font-mono); font-size: 13px; }
+.bar nav a { color: var(--muted); text-decoration: none; }
+.bar nav a:hover { color: var(--ink); }
 
-.hero { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: end; margin-top: 56px; }
+.hero { padding-block: 40px 88px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: end; }
 .hero > * { min-width: 0; }
-.hero h1 { font-size: clamp(52px, 10vw, 112px); font-weight: 800; letter-spacing: -0.035em; }
-.hero h1 .amp { font-family: var(--font-mono); font-weight: 400; color: var(--bloom-ink); font-size: .62em; vertical-align: .18em; padding-inline: .06em; }
-.hero .lede { font-size: clamp(19px, 2.2vw, 23px); margin-top: 22px; max-width: 34ch; }
-.form { margin-top: 28px; display: flex; gap: 10px; flex-wrap: wrap; max-width: 470px; }
-.form input { flex: 1 1 220px; min-width: 0; font: inherit; padding: 14px 16px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--sheet); color: var(--ink); }
-.form button { font: 600 16px var(--font-body); padding: 14px 20px; border-radius: 10px; border: 0; background: var(--ink); color: var(--paper); cursor: pointer; }
+.kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.hero h1 { font-size: clamp(44px, 7.4vw, 88px); font-weight: 800; letter-spacing: -0.035em; margin-top: 18px; }
+.hero h1 em { font-style: normal; color: var(--bloom-ink); }
+.hero .lede { font-size: clamp(19px, 2.1vw, 22px); margin-top: 22px; max-width: 36ch; color: var(--ink); }
+.scrollcue { margin-top: 28px; display: inline-flex; gap: 10px; align-items: center; font-family: var(--font-mono); font-size: 13px; color: var(--muted); text-decoration: none; }
+.scrollcue span { display: inline-block; }
+@media (prefers-reduced-motion: no-preference) {
+  .scrollcue span { animation: nudge 2.4s ease-in-out infinite; }
+  @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+}
+
+.form { display: flex; flex-direction: column; gap: 10px; background: var(--sheet); border: 1.5px solid var(--ink); border-radius: 6px; padding: 22px; box-shadow: 6px 6px 0 var(--bloom); }
+.form .label { font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 1.2; }
+.form .sub { font-size: 15px; color: var(--muted); }
+.form .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.form input[type="email"] { flex: 1 1 200px; min-width: 0; font: inherit; font-size: 16px; padding: 13px 14px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--paper); color: var(--ink); }
+.form button { font: 600 16px var(--font-body); padding: 13px 18px; border-radius: 8px; border: 0; background: var(--ink); color: var(--paper); cursor: pointer; }
 .form button:hover { background: var(--bloom); color: #1a1405; }
-.note { margin-top: 10px; font-size: 13px; color: var(--muted); max-width: 470px; }
-.note[data-state="sent"] { color: var(--bloom-ink); }
+.form button:disabled { opacity: .6; cursor: progress; }
+.note { font-size: 13px; color: var(--muted); min-height: 1.4em; }
+.note[data-state="sent"] { color: var(--leaf); font-weight: 600; }
+.note[data-state="error"] { color: #b3261e; }
 
-/* the seed packet: issue #1 preview */
-.packet { background: var(--sheet); border: 1.5px solid var(--ink); border-radius: 4px; padding: 22px 22px 18px; position: relative; transform: rotate(1.4deg); box-shadow: 6px 6px 0 var(--bloom); }
-.packet::before { content: ""; position: absolute; top: -1.5px; left: 18px; right: 18px; height: 10px; border-bottom: 1.5px dashed var(--ink); }
-.packet .eyebrow { margin-top: 10px; }
-.packet h3 { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; margin-top: 6px; }
-.packet .sub { color: var(--muted); font-size: 15px; margin-top: 4px; }
-.facts { margin: 16px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 14px; }
-.facts dt { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding-top: 2px; }
-.facts dd { margin: 0; }
-.packet .stamp { margin-top: 14px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); border-top: 1.5px solid var(--line); padding-top: 10px; }
+/* ---------- chapters ---------- */
+.chapter { position: relative; }
+.chapter .wrap { display: grid; grid-template-columns: 150px 1fr; gap: 12px 48px; padding-block: 80px; }
+.chapter .wrap > * { min-width: 0; }
+.log { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.log .when { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.log svg { width: 96px; height: 96px; }
+.chapter .num { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; }
+.chapter h2 { font-size: clamp(34px, 5vw, 58px); font-weight: 800; letter-spacing: -0.025em; margin-top: 8px; }
+.chapter .story { margin-top: 20px; display: grid; gap: 16px; max-width: 60ch; font-size: 19px; }
+.inissue { margin-top: 26px; display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; font-family: var(--font-mono); font-size: 13px; padding: 10px 14px; border-radius: 6px; }
+.inissue b { font-family: var(--font-body); font-size: 15px; font-weight: 600; }
 
-/* ---------- the soil line ---------- */
-.soil { background: var(--soil); color: var(--soil-ink); position: relative; }
-.soil::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 14px; background:
-  radial-gradient(circle at 10px 14px, var(--soil) 9px, transparent 10px) 0 0 / 22px 14px repeat-x; }
-.soil .wrap { padding-block: 56px 64px; }
-.roots { font-family: var(--font-mono); font-size: 13px; color: var(--root); line-height: 1.9; overflow-x: auto; white-space: pre; }
-.roots b { color: var(--bloom); font-weight: 500; }
-.soil h2 { font-size: clamp(32px, 5vw, 52px); font-weight: 600; letter-spacing: -0.02em; margin-top: 36px; color: var(--soil-ink); }
-.story { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 48px; margin-top: 22px; }
-.story > p { min-width: 0; max-width: 60ch; color: var(--soil-ink); opacity: .92; }
-.story strong { color: var(--bloom); font-weight: 600; }
+/* underground */
+.under { background: var(--soil); color: var(--soil-ink); }
+.under.deep { background: linear-gradient(var(--soil), var(--soil-deep)); }
+.under .when, .under .num { color: var(--root); }
+.under .story { color: var(--soil-ink); }
+.under .story .aside { color: var(--soil-muted); }
+.under .inissue { background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); color: var(--soil-muted); }
+.under .inissue b { color: var(--soil-ink); }
+.under svg { color: var(--soil-ink); }
+/* the soil line: a scalloped edge where the ground begins */
+.ground-top::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 14px;
+  background: radial-gradient(circle at 10px 14px, var(--soil) 9px, transparent 10px) 0 0 / 22px 14px repeat-x; }
 
-/* ---------- back above ground ---------- */
-.section { padding-block: 72px 0; }
-.section h2 { font-size: clamp(30px, 4.4vw, 46px); font-weight: 600; letter-spacing: -0.02em; }
-.section .intro { color: var(--muted); margin-top: 10px; max-width: 58ch; }
-.rows { margin-top: 28px; border-top: 1.5px solid var(--ink); }
-.row { display: grid; grid-template-columns: 210px 1fr; gap: 8px 32px; padding-block: 18px; border-bottom: 1.5px solid var(--line); }
-.row > * { min-width: 0; }
-.row .tag { font-family: var(--font-mono); font-size: 14px; color: var(--bloom-ink); padding-top: 3px; }
-.row h3 { font-size: 22px; font-weight: 600; }
-.row p { color: var(--muted); margin-top: 4px; max-width: 62ch; }
+/* above ground */
+.above .when, .above .num { color: var(--leaf); }
+.above .inissue { background: var(--sheet); border: 1px solid var(--line); color: var(--muted); }
+.above .inissue b { color: var(--ink); }
+.above svg { color: var(--leaf); }
+.surface-break { border-top: 0; }
+.surface-break::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 18px;
+  background: radial-gradient(circle at 10px 0, var(--soil) 9px, transparent 10px) 0 0 / 22px 14px repeat-x; }
 
-.who { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
-.who > div { background: var(--sheet); border-radius: 12px; padding: 20px; min-width: 0; }
-.who h3 { font-size: 19px; font-weight: 600; }
-.who p { color: var(--muted); font-size: 15px; margin-top: 6px; }
+.bloom-ch { background: radial-gradient(ellipse 60% 70% at 85% 30%, color-mix(in srgb, var(--bloom) 22%, transparent), transparent 70%), var(--paper); }
+.bloom-ch .when, .bloom-ch .num { color: var(--bloom-ink); }
+.bloom-ch svg { color: var(--bloom-ink); }
 
-.promise { margin-top: 72px; padding-block: 40px; border-top: 1.5px solid var(--ink); display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
-.promise > * { min-width: 0; }
-.promise h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 600; }
-.promise p { color: var(--muted); margin-top: 8px; max-width: 55ch; }
-.promise a.cta { font: 600 16px var(--font-body); padding: 14px 22px; border-radius: 10px; background: var(--bloom); color: #1a1405; text-decoration: none; white-space: nowrap; }
-footer { padding-block: 24px 48px; font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+/* the thread that connects every chapter: a single vertical stem in the log column */
+.chapter .log::after { content: ""; position: absolute; left: 47px; top: 150px; bottom: -80px; width: 2px; background: currentColor; opacity: .18; }
+.under .log { color: var(--root); }
+.above .log { color: var(--leaf); }
+.bloom-ch .log::after { display: none; }
+
+/* ---------- harvest ---------- */
+.harvest { padding-block: 72px 40px; }
+.harvest .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.harvest .grid > * { min-width: 0; }
+.harvest h2 { font-size: clamp(34px, 5vw, 56px); font-weight: 800; letter-spacing: -0.025em; }
+.harvest .story { margin-top: 18px; display: grid; gap: 14px; max-width: 54ch; }
+.packet-list { margin: 22px 0 0; padding: 0; list-style: none; border-top: 1.5px solid var(--ink); }
+.packet-list li { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+.packet-list li > * { min-width: 0; }
+.packet-list .k { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding-top: 3px; }
+footer { padding-block: 32px 48px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); margin-top: 56px; }
+footer a { color: var(--muted); }
 
 @media (max-width: 860px) {
-  .hero { grid-template-columns: 1fr; gap: 40px; margin-top: 36px; }
-  .packet { transform: rotate(0.8deg); max-width: 460px; }
-  .story { grid-template-columns: 1fr; }
-  .row { grid-template-columns: 1fr; }
-  .who { grid-template-columns: 1fr; }
-  .promise { grid-template-columns: 1fr; }
+  .hero { grid-template-columns: 1fr; gap: 36px; padding-block: 24px 72px; }
+  .chapter .wrap { grid-template-columns: 1fr; padding-block: 64px; gap: 8px; }
+  .log { flex-direction: row; align-items: center; gap: 16px; }
+  .log svg { width: 64px; height: 64px; }
+  .chapter .log::after { display: none; }
+  .harvest .grid { grid-template-columns: 1fr; }
+  .packet-list li { grid-template-columns: 1fr; gap: 2px; }
 }
+
+/* the growth glyphs draw themselves once, on load; at rest they are fully drawn */
 @media (prefers-reduced-motion: no-preference) {
-  .packet { transition: transform .4s ease; }
-  .packet:hover { transform: rotate(0deg) translateY(-4px); }
+  .grow path { stroke-dasharray: 240; stroke-dashoffset: 0; animation: draw 1.6s ease-out both; }
+  @keyframes draw { from { stroke-dashoffset: 240; } to { stroke-dashoffset: 0; } }
 }
 </style>
 </head>
 <body>
-<header class="top">
-  <div class="wrap">
-    <div class="bar">
-      <div class="mark">
-        <svg viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M16 30V15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-          <path d="M16 17c0-6 4-9 10-9 0 6-4 9-10 9Z" fill="var(--bloom)" stroke="currentColor" stroke-width="2"/>
-          <path d="M16 20c0-5-3.5-8-9-8 0 5 3.5 8 9 8Z" fill="none" stroke="currentColor" stroke-width="2"/>
-        </svg>
-        Seed &amp; Source
-      </div>
-      <nav><a href="/issues/">Past issues</a></nav>
-    </div>
 
-    <div class="hero">
-      <div>
-        <p class="eyebrow">A newsletter about how startups are built</p>
-        <h1>Seed <span class="amp">&amp;</span> Source</h1>
-        <p class="lede">The story behind a startup, the business that pays for it, and the code it runs on. One company dug up every week.</p>
-        <form class="form" id="signup" novalidate>
-          <label for="email" class="eyebrow" style="position:absolute;left:-9999px">Email address</label>
-          <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
-          <input class="hp" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <button type="submit">Plant me in</button>
-        </form>
-        <p class="note" id="signup-note" aria-live="polite">Free, every Tuesday. We'll email you a link to confirm.</p>
-      </div>
-
-      <aside class="packet" aria-label="What the newsletter is">
-        <p class="eyebrow">Seed packet · one per week</p>
-        <h3>Seed &amp; Source</h3>
-        <p class="sub">A weekly newsletter about how startups are built</p>
-        <dl class="facts">
-          <dt>Planted</dt><dd>Every Tuesday, in your inbox</dd>
-          <dt>Contents</dt><dd>One startup, from the first idea down to the stack</dd>
-          <dt>Varieties</dt><dd>YC companies, AI startups, open-source projects, bootstrapped businesses</dd>
-          <dt>Yield</dt><dd>A seven-minute read with every claim linked to its source</dd>
-        </dl>
-        <p class="stamp">Free · unsubscribe in one click</p>
-      </aside>
-    </div>
+<header class="wrap">
+  <div class="bar">
+    <a class="mark" href="/" aria-label="Seed and Source home">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 30V15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M16 17c0-6 4-9 10-9 0 6-4 9-10 9Z" fill="var(--bloom)" stroke="currentColor" stroke-width="2"/>
+        <path d="M16 20c0-5-3.5-8-9-8 0 5 3.5 8 9 8Z" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      Seed &amp; Source
+    </a>
+    <nav aria-label="Site">
+      <a href="#seed">The story</a>
+      <a href="/issues/">Past issues</a>
+      <a href="#harvest">Subscribe</a>
+    </nav>
   </div>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <p class="kicker">A weekly newsletter about how startups are built</p>
+      <h1 id="hero-title">Every company you admire was once a seed <em>in the dark.</em></h1>
+      <p class="lede">Seed &amp; Source digs up how it grew. One startup every Tuesday: the idea, the business, the code and the tools behind it, with every claim linked to where we found it.</p>
+      <a class="scrollcue" href="#seed">Follow one seed down <span aria-hidden="true">↓</span></a>
+    </div>
+    <form class="form js-signup" novalidate aria-labelledby="form-top-label">
+      <p class="label" id="form-top-label">Get the next issue</p>
+      <p class="sub">Free. Seven minutes on Tuesday. Unsubscribe in one click.</p>
+      <div class="row">
+        <label class="sr" for="email-top">Email address</label>
+        <input id="email-top" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+        <input class="hp" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit">Plant me in</button>
+      </div>
+      <p class="note" aria-live="polite">We'll email you a link to confirm.</p>
+    </form>
+  </section>
 </header>
 
-<section class="soil" aria-labelledby="story-title">
-  <div class="wrap">
-<pre class="roots" aria-hidden="true">  ├── <b>the seed</b>    idea · founder · first check · first customer
-  │     └── one tagline that finally clicked
-  └── <b>the source</b>  code · stack · pricing · the tools behind it
-        ├── git log --reverse | head -1
-        └── what it costs, what it earns, what broke</pre>
-    <h2 id="story-title">Every company you admire started as two things.</h2>
-    <div class="story">
-      <p>A <strong>seed</strong>: an idea someone couldn't stop thinking about, a founder willing to look foolish, a first check, a first customer. Small, buried and easy to miss. By the time a startup is in the headlines, the seed is long out of sight.</p>
-      <p>And <strong>source</strong>: the code, the tools and the decisions it grows from. More of it is public than ever, in open repos, changelogs and pricing pages that anyone can read if they know where to dig.</p>
-      <p>Most startup writing covers one half. Funding news without the code. Engineering posts without the business. Founder myths without the numbers.</p>
-      <p>Seed &amp; Source digs up both. Each week we take one company, from YC launches to AI startups to the open-source projects quietly becoming businesses, and trace it from the first idea down to the stack. Everything we claim links to where we found it.</p>
-    </div>
-  </div>
-</section>
-
-<main class="wrap">
-  <section class="section" aria-labelledby="inside-title">
-    <p class="eyebrow">What's in every issue</p>
-    <h2 id="inside-title">One company, from the story down to the stack</h2>
-    <p class="intro">Same sections every week, so you always know where to look. The main story rotates between YC companies, AI startups and bootstrapped businesses.</p>
-    <div class="rows">
-      <div class="row"><span class="tag">story/</span><div><h3>The Story</h3><p>How it started, the first customers, what nearly killed it, and what is working now.</p></div></div>
-      <div class="row"><span class="tag">business/</span><div><h3>The Business Side</h3><p>Pricing, growth, funding and the decisions behind the numbers.</p></div></div>
-      <div class="row"><span class="tag">source/</span><div><h3>Under the Hood</h3><p>The stack and one engineering decision, explained so a non-engineer can follow it.</p></div></div>
-      <div class="row"><span class="tag">ai-radar/</span><div><h3>AI Radar</h3><p>Two or three AI startups doing well this week, and why.</p></div></div>
-      <div class="row"><span class="tag">tools/</span><div><h3>Tools</h3><p>One open-source pick and one paid pick, both actually tried before they get written up.</p></div></div>
-      <div class="row"><span class="tag">quick-hits/</span><div><h3>Quick Hits</h3><p>Launches, funding rounds and repos worth a look, one line each.</p></div></div>
+<main>
+  <!-- I. SEED -->
+  <section class="chapter under ground-top" id="seed" aria-labelledby="ch1">
+    <div class="wrap">
+      <div class="log grow" aria-hidden="true">
+        <span class="when">Day 0</span>
+        <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M48 30c14 0 22 10 22 22S62 74 48 74 26 64 26 52s8-22 22-22Z"/>
+          <path d="M48 36c-4 8-4 22 0 32"/>
+        </svg>
+      </div>
+      <div>
+        <p class="num">I · The seed</p>
+        <h2 id="ch1">It starts where nobody is looking.</h2>
+        <div class="story">
+          <p>A founder gets annoyed by a problem that won't go away. They sketch an answer, pitch it, and usually get told no. Nothing about it is visible yet. No logo, no users, no headline.</p>
+          <p class="aside">By the time you read about a company, this part has been buried for years. We go back and dig it up: who was annoyed, by what, and the first version they built.</p>
+        </div>
+        <p class="inissue">In every issue <b>The Story</b> where the idea came from</p>
+      </div>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="who-title">
-    <p class="eyebrow">Who it's for</p>
-    <h2 id="who-title">For people who build, or want to</h2>
-    <div class="who">
-      <div><h3>Founders</h3><p>How companies like yours found their first customers and their pricing.</p></div>
-      <div><h3>Engineers</h3><p>The stack behind the story, and the open-source tools worth stealing.</p></div>
-      <div><h3>The curious</h3><p>Startups explained properly, without the hype or the jargon.</p></div>
+  <!-- II. ROOTS -->
+  <section class="chapter under deep" id="roots" aria-labelledby="ch2">
+    <div class="wrap">
+      <div class="log grow" aria-hidden="true">
+        <span class="when">Month 2</span>
+        <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M48 14v36"/>
+          <path d="M48 50c-6 8-16 12-24 26"/>
+          <path d="M48 50c6 8 16 12 24 26"/>
+          <path d="M48 50v34"/>
+          <path d="M36 64c-8 0-12 6-16 12"/>
+          <path d="M60 64c8 0 12 6 16 12"/>
+        </svg>
+      </div>
+      <div>
+        <p class="num">II · The roots</p>
+        <h2 id="ch2">Plants grow roots before anyone sees a leaf.</h2>
+        <div class="story">
+          <p>Startups do too. Before the first customer, there is a stack: a database someone picked, an open-source library that saved six months, an engineering decision that will matter for years.</p>
+          <p class="aside">More of this is public than ever, in open repos, changelogs and engineering blogs. We read them and explain the one decision that holds the whole thing up, in plain words.</p>
+        </div>
+        <p class="inissue">In every issue <b>Under the Hood</b> the stack and the decision behind it</p>
+      </div>
     </div>
   </section>
 
-  <section class="promise" aria-labelledby="promise-title">
-    <div>
-      <h2 id="promise-title">A seven-minute read, every Tuesday.</h2>
-      <p>Free. Every claim linked to its source. No sponsored stories dressed up as research. Unsubscribe in one click.</p>
+  <!-- III. SPROUT -->
+  <section class="chapter above surface-break" id="sprout" aria-labelledby="ch3">
+    <div class="wrap">
+      <div class="log grow" aria-hidden="true">
+        <span class="when">Month 6</span>
+        <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 78h72"/>
+          <path d="M48 78V44"/>
+          <path d="M48 52c0-12 8-18 20-18 0 12-8 18-20 18Z"/>
+          <path d="M48 58c0-10-7-15-17-15 0 10 7 15 17 15Z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="num">III · The sprout</p>
+        <h2 id="ch3">Then, one morning, something breaks the surface.</h2>
+        <div class="story">
+          <p>The first customers. A launch that finally lands. Sometimes it's a new feature; surprisingly often it's a new sentence that explains the product better than the old one did.</p>
+          <p>That turning point is the moment founders remember, and the one that's easiest to learn from. We find it, and we show you the proof.</p>
+        </div>
+        <p class="inissue">In every issue <b>The Story</b> the moment it clicked</p>
+      </div>
     </div>
-    <a class="cta" href="#signup">Subscribe free</a>
   </section>
 
-  <footer>
-    <span>Seed &amp; Source</span>
-    <span>How startups are planted, and what they're built from.</span>
-  </footer>
+  <!-- IV. STEM -->
+  <section class="chapter above" id="stem" aria-labelledby="ch4">
+    <div class="wrap">
+      <div class="log grow" aria-hidden="true">
+        <span class="when">Year 1</span>
+        <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M48 88V12"/>
+          <path d="M48 64c0-10 7-16 18-16 0 10-7 16-18 16Z"/>
+          <path d="M48 44c0-10-7-16-18-16 0 10 7 16 18 16Z"/>
+          <path d="M48 26c0-7 5-11 12-11 0 7-5 11-12 11Z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="num">IV · The stem</p>
+        <h2 id="ch4">A plant needs something to carry water up.</h2>
+        <div class="story">
+          <p>A company needs something to carry money in. Pricing, the first sales, funding rounds, how big the team got and when. This is the part founders talk about least and readers want most.</p>
+          <p>We only use numbers the company or reputable press reported. When a figure is an outside estimate, we say so.</p>
+        </div>
+        <p class="inissue">In every issue <b>The Business Side</b> how it makes money</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- V. BLOOM -->
+  <section class="chapter above bloom-ch" id="bloom" aria-labelledby="ch5">
+    <div class="wrap">
+      <div class="log grow" aria-hidden="true">
+        <span class="when">Year 5</span>
+        <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M48 90V50"/>
+          <circle cx="48" cy="34" r="8"/>
+          <path d="M48 26c-4-8-4-14 0-18 4 4 4 10 0 18Z"/>
+          <path d="M40 34c-8-4-14-4-18 0 4 4 10 4 18 0Z"/>
+          <path d="M56 34c8-4 14-4 18 0-4 4-10 4-18 0Z"/>
+          <path d="M42 28c-7-3-11-8-11-13 5 0 10 4 13 11"/>
+          <path d="M54 28c7-3 11-8 11-13-5 0-10 4-13 11"/>
+        </svg>
+      </div>
+      <div>
+        <p class="num">V · The bloom</p>
+        <h2 id="ch5">The part everyone sees.</h2>
+        <div class="story">
+          <p>The billion-dollar round, the launch on every timeline, the company your friends suddenly use. It looks overnight. It never is.</p>
+          <p>Every issue ends with what's flowering right now: the AI startups that had a big week, and the launches, rounds and open-source releases worth a look.</p>
+        </div>
+        <p class="inissue">In every issue <b>AI Radar</b> + <b>Quick Hits</b> what's blooming this week</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HARVEST -->
+  <section class="harvest wrap" id="harvest" aria-labelledby="harvest-title">
+    <div class="grid">
+      <div>
+        <p class="kicker">The harvest</p>
+        <h2 id="harvest-title">One plant, from seed to bloom, every week.</h2>
+        <div class="story">
+          <p>Then we hand you what's worth keeping: three to five lessons you can use on your own seed, each one tied to something that really happened.</p>
+        </div>
+        <ul class="packet-list" aria-label="What a Seed and Source issue is">
+          <li><span class="k">Arrives</span><span>Every Tuesday, in your inbox</span></li>
+          <li><span class="k">Varieties</span><span>YC companies, AI startups, open-source projects, bootstrapped businesses</span></li>
+          <li><span class="k">Reading time</span><span>About seven minutes</span></li>
+          <li><span class="k">Promise</span><span>Every claim linked to its source. No sponsored stories dressed up as research.</span></li>
+          <li><span class="k">Price</span><span>Free</span></li>
+        </ul>
+      </div>
+      <form class="form js-signup" novalidate aria-labelledby="form-end-label">
+        <p class="label" id="form-end-label">Plant yourself here.</p>
+        <p class="sub">For founders, engineers and anyone curious how startups really grow.</p>
+        <div class="row">
+          <label class="sr" for="email-end">Email address</label>
+          <input id="email-end" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+          <input class="hp" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit">Subscribe free</button>
+        </div>
+        <p class="note" aria-live="polite">We'll email you a link to confirm.</p>
+      </form>
+    </div>
+
+    <footer>
+      <span>Seed &amp; Source · How startups are planted, and what they're built from.</span>
+      <span><a href="/issues/">Past issues</a></span>
+    </footer>
+  </section>
 </main>
 
 <script>
-  const form = document.getElementById("signup");
-  const note = document.getElementById("signup-note");
-  const button = form.querySelector("button");
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const email = form.email.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      note.textContent = "Enter a full email address, like you@company.com.";
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  for (const form of document.querySelectorAll(".js-signup")) {
+    const note = form.querySelector(".note");
+    const button = form.querySelector("button");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const email = form.email.value.trim();
+      if (!EMAIL_RE.test(email)) {
+        note.textContent = "Enter a full email address, like you@company.com.";
+        note.dataset.state = "error";
+        form.email.focus();
+        return;
+      }
+      button.disabled = true;
+      note.textContent = "Planting…";
       note.dataset.state = "";
-      form.email.focus();
-      return;
-    }
-    button.disabled = true;
-    note.textContent = "Sending…";
-    try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, company_website: form.company_website.value }),
-      });
-      if (!response.ok) throw new Error(String(response.status));
-      note.textContent = "Almost done: check your inbox and click the link to confirm.";
-      note.dataset.state = "sent";
-      form.reset();
-    } catch {
-      note.textContent = "That didn't go through. Please try again in a minute.";
-      note.dataset.state = "";
-    } finally {
-      button.disabled = false;
-    }
-  });
+      try {
+        const response = await fetch("/api/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, company_website: form.company_website.value }),
+        });
+        if (!response.ok) throw new Error(String(response.status));
+        note.textContent = "Almost there: check your inbox and click the link to confirm.";
+        note.dataset.state = "sent";
+        form.reset();
+      } catch {
+        note.textContent = "That didn't go through. Please try again in a minute.";
+        note.dataset.state = "error";
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
 </script>
 </body>
 </html>
