@@ -83,8 +83,9 @@ Free plan: up to 1,000 subscribers for newsletters. Check https://resend.com/pri
 2. **Workers & Pages → Create → Pages → Connect to Git**, pick `seed-and-source`.
 3. Build settings: build command `npm run build`, output directory `dist`.
 4. **Settings → Variables and Secrets** (Production): add `RESEND_API_KEY`,
-   `RESEND_SEGMENT_ID`, `FROM_EMAIL`, `SITE_URL`, and `CONFIRM_SECRET`
-   (any long random string, e.g. from `openssl rand -hex 32`).
+   `RESEND_SEGMENT_ID`, `FROM_EMAIL`, `SITE_URL`, `CONFIRM_SECRET`
+   (any long random string, e.g. from `openssl rand -hex 32`), and optionally `REPLY_TO`
+   (where reader replies go, e.g. the brand Gmail).
 5. **Custom domains:** add your domain and follow the DNS steps.
 6. Test it: subscribe with your own email, click the confirmation link, and check that
    you appear in the Resend segment.
@@ -105,6 +106,8 @@ Every `git push` redeploys the site.
 
 - **Signing up:** someone clicks your invite → lands on the site → types their email → gets a confirmation
   email → clicks it → is added to the `Subscribers` segment in Resend. Nobody is added without that click.
+- **What they receive:** a branded confirmation email, then (on their first confirmation only) the
+  "You're planted" welcome email, and the confirmation page in the browser. Templates: `functions/_lib/emails.ts`.
 - **Where to see them:** Resend → Audience → Contacts (filter by the `Subscribers` segment). You can export a
   CSV there. Keep that file private; never commit it.
 - **Unsubscribing:** every issue has an unsubscribe link (added by the template). One click marks the contact

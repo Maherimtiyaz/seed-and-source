@@ -6,6 +6,8 @@ export type Env = {
   SITE_URL: string;
   /** Any long random string; signs confirmation links. */
   CONFIRM_SECRET: string;
+  /** Optional: where reader replies go (e.g. the brand Gmail). */
+  REPLY_TO?: string;
 };
 
 export type PagesContext = { request: Request; env: Env };

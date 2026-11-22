@@ -25,6 +25,12 @@ That keeps you legal (CAN-SPAM, GDPR) and keeps Resend from flagging your domain
 4. **Never send invitations through Resend.** Resend is only for people who confirmed. Cold email through it
    can get the account suspended.
 
+## Before the domain is live
+
+Until your domain is connected, the site lives at `https://<project>.pages.dev`. Replace
+`https://seedandsource.com` in `invite-email.html` (the "Deliver my paper" button) and in
+your messages with that address while you test.
+
 ## Changing the domain
 
 The card and the link-preview image say `seedandsource.com`. If you buy a different domain, change it in

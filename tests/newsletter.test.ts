@@ -168,3 +168,37 @@ describe("archive", () => {
     assert.match(indexPage([issue]), /\/issues\/2026-12-01-acme\.html/);
   });
 });
+
+describe("signup emails", () => {
+  test("the confirmation email carries the link and the brand", async () => {
+    const { confirmEmail } = await import("../functions/_lib/emails.ts");
+    const email = confirmEmail("https://s.co/api/confirm?t=a&b", "https://s.co");
+    assert.ok(email.html.includes('href="https://s.co/api/confirm?t=a&amp;b"'));
+    assert.ok(email.text.includes("https://s.co/api/confirm?t=a&b"));
+    assert.ok(email.html.includes("https://s.co/email/wordmark.png"));
+  });
+
+  test("confirming sends the welcome once, to new contacts only", async () => {
+    const { onRequestGet } = await import("../functions/api/confirm.ts");
+    const env = { RESEND_API_KEY: "k", RESEND_SEGMENT_ID: "seg", FROM_EMAIL: "S <h@s.co>", SITE_URL: "https://s.co", CONFIRM_SECRET: "secret-for-tests", REPLY_TO: "r@s.co" };
+    const token = await createToken("new@b.co", env.CONFIRM_SECRET);
+    const realFetch = globalThis.fetch;
+    for (const existing of [false, true]) {
+      const calls: { url: string; body: string }[] = [];
+      globalThis.fetch = (async (url: string | URL | Request, init?: RequestInit) => {
+        calls.push({ url: String(url), body: String(init?.body ?? "") });
+        if (existing && String(url).endsWith("/contacts")) return new Response("{}", { status: 409 });
+        return new Response('{"id":"x"}', { status: 200 });
+      }) as typeof fetch;
+      try {
+        const response = await onRequestGet({ request: new Request(`https://s.co/api/confirm?t=${encodeURIComponent(token)}`), env });
+        assert.equal(response.headers.get("location"), "https://s.co/confirmed.html");
+        const welcomes = calls.filter((c) => c.url.endsWith("/emails"));
+        assert.equal(welcomes.length, existing ? 0 : 1);
+        if (!existing) assert.match(welcomes[0]?.body ?? "", /You're planted.*"reply_to":"r@s.co"|"reply_to":"r@s.co".*You're planted/);
+      } finally {
+        globalThis.fetch = realFetch;
+      }
+    }
+  });
+});
