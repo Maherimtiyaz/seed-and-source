@@ -202,3 +202,22 @@ describe("signup emails", () => {
     }
   });
 });
+
+describe("worker", () => {
+  test("routes the signup API and serves everything else from assets", async () => {
+    const worker = (await import("../src/worker.ts")).default;
+    const served: string[] = [];
+    const env = {
+      RESEND_API_KEY: "k", RESEND_SEGMENT_ID: "seg", FROM_EMAIL: "S <h@s.co>", SITE_URL: "https://s.co", CONFIRM_SECRET: "secret-for-tests",
+      ASSETS: { fetch: async (request: Request) => { served.push(new URL(request.url).pathname); return new Response("asset"); } },
+    };
+    const bad = await worker.fetch(new Request("https://s.co/api/subscribe", { method: "POST", body: '{"email":"nope"}', headers: { "Content-Type": "application/json" } }), env);
+    assert.equal(bad.status, 400);
+    assert.equal((await worker.fetch(new Request("https://s.co/api/subscribe"), env)).status, 405);
+    const expired = await worker.fetch(new Request("https://s.co/api/confirm?t=bad"), env);
+    assert.equal(expired.headers.get("location"), "https://s.co/confirmed.html?status=expired");
+    assert.equal((await worker.fetch(new Request("https://s.co/api/other"), env)).status, 404);
+    assert.equal(await (await worker.fetch(new Request("https://s.co/"), env)).text(), "asset");
+    assert.deepEqual(served, ["/"]);
+  });
+});

@@ -77,7 +77,11 @@ Buy `seedandsource.com` (or your choice) at any registrar. You'll point it at Cl
 
 Free plan: up to 1,000 subscribers for newsletters. Check https://resend.com/pricing.
 
-### 4. Cloudflare Pages (website + signup)
+### 4. Cloudflare (website + signup)
+
+The site runs as a **Cloudflare Worker** (`wrangler.jsonc`, `src/worker.ts`): it serves `dist/` and runs the
+signup API. If you rename the Worker in the dashboard, change `"name"` in `wrangler.jsonc` to match.
+The steps below are for Pages, which also works (it uses `functions/`).
 
 1. Create a free account: **https://dash.cloudflare.com/sign-up**
 2. **Workers & Pages → Create → Pages → Connect to Git**, pick `seed-and-source`.
